@@ -72,7 +72,7 @@ const attempts: Set<string> =
 // ── Recruiter helpers ─────────────────────────────────────────────────────────
 export function createRecruiter(email: string, password: string, name: string): Recruiter {
   const normalised = email.toLowerCase().trim();
-  const existing = [...recruiters.values()].find(r => r.email === normalised);
+  const existing = Array.from[...recruiters.values()].find(r => r.email === normalised);
   if (existing) throw new Error('An account with this email already exists');
   const r: Recruiter = {
     id: uuidv4(),
@@ -87,7 +87,7 @@ export function createRecruiter(email: string, password: string, name: string): 
 
 export function findRecruiterByEmail(email: string): Recruiter | undefined {
   const normalised = email.toLowerCase().trim();
-  return [...recruiters.values()].find(r => r.email === normalised);
+  return Array.from[...recruiters.values()].find(r => r.email === normalised);
 }
 
 export function findRecruiterById(id: string): Recruiter | undefined {
@@ -108,7 +108,7 @@ export function getJob(id: string): Job | undefined {
 }
 
 export function getJobsByRecruiter(recruiterId: string): Job[] {
-  return [...jobs.values()].filter(j => j.recruiterId === recruiterId);
+  return Array.from[...jobs.values()].filter(j => j.recruiterId === recruiterId);
 }
 
 export function updateJobStatus(id: string, status: 'open' | 'closed'): Job | undefined {
@@ -149,7 +149,7 @@ export function updateSubmission(
 }
 
 export function getSubmissionsByJob(jobId: string): CandidateSubmission[] {
-  return [...submissions.values()].filter(s => s.jobId === jobId);
+  return Array.from[...submissions.values()].filter(s => s.jobId === jobId);
 }
 
 export function getSubmissionByJobAndEmail(
@@ -157,7 +157,7 @@ export function getSubmissionByJobAndEmail(
   email: string
 ): CandidateSubmission | undefined {
   const normalised = email.toLowerCase().trim();
-  return [...submissions.values()].find(
+  return Array.from[...submissions.values()].find(
     s => s.jobId === jobId && s.email.toLowerCase() === normalised
   );
 }
